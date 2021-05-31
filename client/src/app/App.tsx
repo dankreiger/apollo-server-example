@@ -1,6 +1,6 @@
 import React from 'react';
 import { IGQLData } from '../../../types';
-import './App.css';
+import './App.scss';
 import { Card } from '../components/Card';
 import { useQuery } from '@apollo/client';
 import { QUERY } from '../graphql';

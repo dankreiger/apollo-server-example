@@ -7,17 +7,20 @@
   "author": "Dan Kreiger",
   "main": "index.js",
   "scripts": {
+    "pre-commit": "yarn sort && lint-staged",
+    "sort": "sort-package-json",
     "postinstall": "scripty",
     "clean": "scripty",
     "generate": "yarn --cwd server generate",
     "dev": "scripty",
+    "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
-    "*.{js,ts,json}": [
-      "yarn sort && prettier --single-quote --write"
+    "**/*.{js,ts,tsx,json}": [
+      "prettier --single-quote --write"
     ],
-    "*.{md,mdx,yml}": [
+    "**/*.{md,mdx,yml}": [
       "prettier --write"
     ]
   },
@@ -30,11 +33,12 @@
     "@types/lowdb": "^1.0.10",
     "commitlint": "^12.1.4",
     "concurrently": "^6.2.0",
-    "husky": "4",
+    "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.0",
     "scripty": "^2.0.0",
+    "sort-package-json": "^1.50.0",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
   }

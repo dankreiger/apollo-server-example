@@ -1,0 +1,136 @@
+:root {
+  --ifm-dark-value: 10%;
+  --ifm-darker-value: 15%;
+  --ifm-darkest-value: 30%;
+  --ifm-light-value: 15%;
+  --ifm-lighter-value: 30%;
+  --ifm-lightest-value: 50%;
+  --ifm-color-primary: #3578e5;
+  --ifm-color-secondary: #ebedf0;
+  --ifm-color-success: #00a400;
+  --ifm-color-info: #54c7ec;
+  --ifm-color-warning: #ffba00;
+  --ifm-color-danger: #fa383e;
+  --ifm-color-white: #fff;
+  --ifm-color-black: #000;
+  --ifm-color-gray-0: var(--ifm-color-white);
+  --ifm-color-emphasis-0: var(--ifm-color-gray-0);
+  --ifm-color-content-inverse: var(--ifm-color-emphasis-0);
+  --ifm-color-content-secondary: #606770;
+  --ifm-background-color: transparent;
+  --ifm-background-surface-color: var(--ifm-color-content-inverse);
+  --ifm-global-border-width: 1px;
+  --ifm-global-radius: 0.4rem;
+  --ifm-hover-overlay: rgba(0, 0, 0, 0.05);
+  --ifm-font-color-base: var(--ifm-color-content);
+  --ifm-font-color-base-inverse: var(--ifm-color-content-inverse);
+  --ifm-font-color-secondary: var(--ifm-color-content-secondary);
+  --ifm-font-family-base: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --ifm-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  --ifm-font-size-base: 100%;
+  --ifm-font-weight-light: 300;
+  --ifm-font-weight-normal: 400;
+  --ifm-font-weight-semibold: 500;
+  --ifm-font-weight-bold: 700;
+  --ifm-font-weight-base: var(--ifm-font-weight-normal);
+  --ifm-line-height-base: 1.65;
+  --ifm-global-spacing: 1rem;
+  --ifm-spacing-vertical: var(--ifm-global-spacing);
+  --ifm-spacing-horizontal: var(--ifm-global-spacing);
+  --ifm-transition-fast: 200ms;
+  --ifm-transition-slow: 400ms;
+  --ifm-transition-timing-default: cubic-bezier(0.08, 0.52, 0.52, 1);
+  --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  --ifm-global-shadow-md: 0 5px 40px rgba(0, 0, 0, 0.2);
+  --ifm-global-shadow-tl: 0 12px 28px 0 rgba(0, 0, 0, 0.2),
+    0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  --ifm-badge-background-color: inherit;
+  --ifm-badge-border-color: inherit;
+  --ifm-badge-border-radius: var(--ifm-global-radius);
+  --ifm-badge-border-width: var(--ifm-global-border-width);
+  --ifm-badge-color: var(--ifm-color-white);
+  --ifm-badge-padding-horizontal: calc(var(--ifm-spacing-horizontal) * 0.5);
+  --ifm-badge-padding-vertical: calc(var(--ifm-spacing-vertical) * 0.25);
+  --ifm-card-background-color: var(--ifm-background-surface-color);
+  --ifm-card-border-radius: calc(var(--ifm-global-radius) * 2);
+  --ifm-card-horizontal-spacing: var(--ifm-global-spacing);
+  --ifm-card-vertical-spacing: var(--ifm-global-spacing);
+}
+
+body {
+  margin: 0;
+  background: var(--ifm-color-content-secondary);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+
+  @media (min-width: 660px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 250px);
+  }
+  @media (min-width: 960px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 200px);
+  }
+  .card {
+    height: 100%;
+    cursor: pointer;
+  }
+}
+
+.badge {
+  background-color: var(--ifm-badge-background-color);
+  border: var(--ifm-badge-border-width) solid var(--ifm-badge-border-color);
+  border-radius: var(--ifm-badge-border-radius);
+  color: var(--ifm-badge-color);
+  font-size: 75%;
+  line-height: 1;
+  padding: var(--ifm-badge-padding-vertical) var(--ifm-badge-padding-horizontal);
+  vertical-align: baseline;
+
+  $variants: ('primary', 'secondary', 'success', 'info', 'warning', 'danger');
+
+  @each $variant in $variants {
+    &--#{$variant} {
+      --ifm-badge-background-color: var(--ifm-color-#{$variant});
+      --ifm-badge-border-color: var(--ifm-badge-background-color);
+    }
+  }
+}
+
+.card {
+  background-color: var(--ifm-card-background-color);
+  border-radius: var(--ifm-card-border-radius);
+  box-shadow: var(--ifm-global-shadow-lw);
+  display: flex;
+  flex-direction: column;
+
+  &_body,
+  &_footer,
+  &_header {
+    padding: var(--ifm-card-vertical-spacing) var(--ifm-card-horizontal-spacing);
+    &:not(:last-child) {
+      padding-bottom: 0;
+    }
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__footer {
+    margin-top: auto;
+  }
+}
