@@ -1,0 +1,42 @@
+{
+  "name": "infirma-dnd",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "Dan Kreiger",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "scripty",
+    "clean": "scripty",
+    "generate": "yarn --cwd server generate",
+    "dev": "scripty",
+    "prepare": "husky install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "*.{js,ts,json}": [
+      "yarn sort && prettier --single-quote --write"
+    ],
+    "*.{md,mdx,yml}": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "lowdb": "github:dankreiger/lowdb#chore/esm-cjs-hybrid-WITH-LIB"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@types/lowdb": "^1.0.10",
+    "commitlint": "^12.1.4",
+    "concurrently": "^6.2.0",
+    "husky": "4",
+    "lint-staged": "^11.0.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.0",
+    "scripty": "^2.0.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}
